@@ -8,4 +8,10 @@ const getProducts = async () => {
    
 
 }
-export { getProducts }
+
+const singleStoreApi = async(id)=>{
+    const response = await axios.get(`${BASE_URL}/products/${id}`) 
+    return response.data
+       
+  }
+export { getProducts ,singleStoreApi }

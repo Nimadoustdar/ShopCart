@@ -11,6 +11,9 @@ import styles from "./Product.module.css";
 
 const Product = ({ productData }) => {
     const { state, dispatch, actionType } = useContext(CartContext)
+
+ 
+
     return (
         <div className={styles.container}>
             <img className={styles.cardImage} src={productData.image} alt="product" style={{ width: "200px" }} />

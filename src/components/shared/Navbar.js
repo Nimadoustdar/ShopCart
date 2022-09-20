@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link className={styles.productLink} to='/products'>Products</Link>
         <div className={styles.iconContainer}>
           <Link className={styles.shopLink} to='/cart'>
-          <i class="fa-solid fa-cart-shopping"></i>
+          <i className="fa-solid fa-cart-shopping"></i>
           </Link>
           {state.itemsCounter > 0 && <span> {state.itemsCounter} </span>}
         </div>
