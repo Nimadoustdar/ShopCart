@@ -23,19 +23,51 @@ const Product = ({ productData }) => {
                         quantityCount(state, productData.id) > 1 &&
                         <button
                             className={styles.smallButton}
-                            onClick={() => dispatch({ type: actionType.DECREASE, payload: productData })} > -</button>
+                            onClick={() => dispatch({
+                                type: actionType.DECREASE,
+                                payload: productData
+                            })}
+                        >
+                            -
+                        </button>
                     }
                     {
                         quantityCount(state, productData.id) === 1 &&
-                        <button className={styles.smallButton} onClick={() => dispatch({ type: actionType.REMOVE_ITEM, payload: productData })}>
-                            <i class="fa-solid fa-trash"></i>
+                        <button
+                            className={styles.smallButton}
+                            onClick={() => dispatch({
+                                type: actionType.REMOVE_ITEM,
+                                payload: productData
+                            })}
+                        >
+                            <i className="fa-solid fa-trash"></i>
                         </button>
                     }
-                    {quantityCount(state, productData.id) > 0 &&
-                        <span className={styles.counter}>{quantityCount(state, productData.id)}</span>}
-                    {isInCart(state, productData.id) ?
-                        <button className={styles.smallButton} onClick={() => dispatch({ type: actionType.INCREASE, payload: productData })}>+</button> :
-                        <button onClick={() => dispatch({ type: actionType.ADD_ITEM, payload: productData })}>Add To Cart</button>
+                    {
+                        quantityCount(state, productData.id) > 0 &&
+                        <span className={styles.counter}>
+                            {quantityCount(state, productData.id)}
+                        </span>
+                    }
+                    {
+                        isInCart(state, productData.id) ?
+                            <button
+                                className={styles.smallButton}
+                                onClick={() => dispatch({
+                                    type: actionType.INCREASE,
+                                    payload: productData
+                                })}
+                            >
+                                +
+                            </button> :
+                            <button
+                                onClick={() => dispatch({
+                                    type: actionType.ADD_ITEM,
+                                    payload: productData
+                                })}
+                            >
+                                Add To Cart
+                            </button>
                     }
                 </div>
             </div>

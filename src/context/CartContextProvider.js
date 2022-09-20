@@ -17,18 +17,21 @@ const actionType = {
     CLEAR: "CLEAR",
 
 }
-const sumItems = item => {
-    const itemsCounter = item.reduce((total, product) => total + product.quantity, 0)
-    const total = item.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2)
-    return { itemsCounter, total }
+const sumItems = items => {
+    const itemsCounter = items.reduce((total, product) => total + product.quantity, 0);
+    let total = items.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
+    return {itemsCounter, total}
 }
+
 export const CartContext = createContext()
 
 
 const cartReducer = (state, action) => {
     switch (action.type) {
         case actionType.ADD_ITEM:
+        //true && false
             if (!state.selectedItems.find(item => item.id === action.payload.id)) {
+                //this products
                 state.selectedItems.push({
                     ...action.payload,
                     quantity: 1,
@@ -38,7 +41,6 @@ const cartReducer = (state, action) => {
                 ...state,
                 selectedItems: [...state.selectedItems],
                 ...sumItems(state.selectedItems),
-                ...sumItems(state.selectedItems),
                 checkout:false
 
             };
@@ -46,7 +48,9 @@ const cartReducer = (state, action) => {
             const newSelectedItems = state.selectedItems.filter(item => item.id !== action.payload.id)
             return {
                 ...state,
-                selectedItems: [...newSelectedItems]
+                selectedItems: [...newSelectedItems],
+                ...sumItems(newSelectedItems)
+
             }
         case actionType.INCREASE:
             const indexInc = state.selectedItems.findIndex(item => item.id === action.payload.id)
